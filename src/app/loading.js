@@ -1,5 +1,5 @@
-const LoadingScreen = () => {
+const LoadingPage = () => {
   return <div>Loading...</div>;
 };
 
-export default LoadingScreen;
+export default LoadingPage;

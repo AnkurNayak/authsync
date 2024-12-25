@@ -13,10 +13,6 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    jwt: true,
-  },
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
@@ -25,8 +21,11 @@ export default NextAuth({
       return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
+      if (token) {
+        session.accessToken = token.accessToken;
+      }
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });

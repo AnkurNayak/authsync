@@ -24,7 +24,7 @@ const Header = () => {
             >
               <HiOutlineBars3 size={24} className="text-icon" />
             </button>
-            {isNavOpen && <NavVertical />}
+            {isNavOpen && <NavVertical setIsNavOpen={setIsNavOpen} />}
           </div>
           <ThemeSwitcher />
         </div>
@@ -33,7 +33,7 @@ const Header = () => {
   );
 };
 
-const NavVertical = () => {
+const NavVertical = ({ setIsNavOpen }) => {
   return (
     <motion.div
       initial={{ y: 20 }}
@@ -46,6 +46,7 @@ const NavVertical = () => {
           href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
           className="px-4 py-2 hover:bg-hover flex items-start"
           key={index}
+          onClick={() => setIsNavOpen(false)}
         >
           {item}
         </Link>
