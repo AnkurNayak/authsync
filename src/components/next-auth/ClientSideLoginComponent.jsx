@@ -1,6 +1,7 @@
+"use client";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const ClientSideLoginComponent = () => {
   const { data: session } = useSession();
@@ -17,22 +18,34 @@ const ClientSideLoginComponent = () => {
               {JSON.stringify(session, null, 2)}
             </div>
           </div>
-          <div className="flex mt-6 gap-6 text-xs sm:text-base">
-            <button
-              onClick={() => signIn("google")}
-              className="px-4 bg-card rounded-md h-10 flex items-center space-x-2 justify-center"
-            >
-              <FcGoogle />
-              <span>Login with Google</span>
-            </button>
-            <button
-              onClick={() => signIn("github")}
-              className="px-4 bg-card rounded-md h-10 flex items-center space-x-2 justify-center"
-            >
-              <FaGithub />
-              <span>Login with GitHub</span>
-            </button>
-          </div>
+          {session ? (
+            <div className="flex mt-6 gap-6 text-xs sm:text-base">
+              {" "}
+              <button
+                onClick={() => signOut()}
+                className="px-4 bg-card rounded-md h-10 flex items-center space-x-2 justify-center"
+              >
+                <span>Sign out</span>
+              </button>
+            </div>
+          ) : (
+            <div className="flex mt-6 gap-6 text-xs sm:text-base">
+              <button
+                onClick={() => signIn("google")}
+                className="px-4 bg-card rounded-md h-10 flex items-center space-x-2 justify-center"
+              >
+                <FcGoogle />
+                <span>Login with Google</span>
+              </button>
+              <button
+                onClick={() => signIn("github")}
+                className="px-4 bg-card rounded-md h-10 flex items-center space-x-2 justify-center"
+              >
+                <FaGithub />
+                <span>Login with GitHub</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
