@@ -14,9 +14,9 @@ const ClientSideLoginComponent = () => {
             <div className="rounded-t-2xl bg-gray-700 text-white p-4 font-bold">
               Session Data
             </div>
-            <div className="whitespace-pre-wrap break-all px-4 py-6">
+            <pre className="whitespace-pre-wrap break-all px-4 py-6">
               {JSON.stringify(session, null, 2)}
-            </div>
+            </pre>
           </div>
           {session ? (
             <div className="flex mt-6 gap-6 text-xs sm:text-base">
